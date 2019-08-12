@@ -6,6 +6,6 @@ const server = express();
 
 server.use(express.json());
 
-server.use('/api/posts', db);
+server.use('/', db);
 
 module.exports = server;
