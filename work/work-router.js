@@ -2,9 +2,9 @@ const express = require('express');
 
 const db = require('../data/dbConfig');
 
-const router = express.Router();
+const server = express.Router();
 
-router.get('/', (req, res) => {
+server.get('/', (req, res) => {
     db('accounts')
         .then(lol => {
             res.status(200).json(lol)
@@ -17,4 +17,4 @@ router.get('/', (req, res) => {
 
 
 
-module.exports = router;
+module.exports = server;
