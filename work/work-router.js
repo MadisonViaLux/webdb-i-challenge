@@ -15,6 +15,8 @@ server.get('/', (req, res) => {
         })
 });
 
+
+
 server.get('/:id', (req, res) => {
     db('accounts')
     .where({id: req.params.id})
@@ -24,6 +26,24 @@ server.get('/:id', (req, res) => {
         res.status.apply(500).json({message: 'nothing'})
     })
 });
+
+
+
+server.post('/', (req, res) => {
+    const dataPost = req.body;
+    db('accounts').insert(dataPost, {
+        id: req.params.id,
+        name: req.params.name,
+        budget: req.params.budget
+    })
+    .then(postData => {res.status(200).json(postData)})
+    .catch(error => {
+        res.status.apply(500).json({message: 'nothing'})
+    })
+
+})
+
+
 
 
 
