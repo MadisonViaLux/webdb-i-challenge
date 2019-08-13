@@ -60,7 +60,17 @@ server.put('/:id', (req, res) => {
 })
 
 
-
+server.delete('/:id', (req, res) => {
+    db('accounts')
+    .where('id', '=', req.params.id)
+    .del()
+    .then(postID => {
+            res.status(200).json(postID)
+    })
+    .catch(error => {
+        res.status.apply(500).json({message: 'nothing'})
+    })
+});
 
 
 
