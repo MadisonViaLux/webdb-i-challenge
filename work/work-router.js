@@ -40,8 +40,25 @@ server.post('/', (req, res) => {
     .catch(error => {
         res.status.apply(500).json({message: 'nothing'})
     })
+});
 
+
+
+
+server.put('/:id', (req, res) => {
+    const itemChanges = req.body
+
+    db('accounts')
+    .where('id', '=', req.params.id)
+    .update(itemChanges)
+    .then(postID => {
+            res.status(200).json(postID)
+    })
+    .catch(error => {
+        res.status.apply(500).json({message: 'nothing'})
+    })
 })
+
 
 
 
