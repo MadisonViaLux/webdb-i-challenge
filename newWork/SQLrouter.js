@@ -49,9 +49,13 @@ router.put('/:id', (req, res) => {
 })
 
 
-
-
-
+router.delete('/:id', (req, res) => {
+    db('accounts')
+        .where({ id: req.params.id })
+        .del()
+        .then(acc => res.status(200).json(acc))
+        .catch(err => res.send(err))
+})
 
 
 module.exports = router
