@@ -14,6 +14,16 @@ router.get('/', (req, res) => {
 })
 
 
+router.get('/limit/:id', (req, res) => {
+    const id = req.params.id
+
+    db('accounts')
+        .limit(id)
+        .then(acc => res.status(200).json(acc))
+        .catch(err => res.send(err))
+})
+
+
 router.get('/:id', (req, res) => {
     // db('accounts')
     db.select('*')
