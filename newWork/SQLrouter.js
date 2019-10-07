@@ -4,6 +4,15 @@ const router = express.Router()
 
 
 router.get('/', (req, res) => {
+    db.select('*')
+        .from('accounts')
+        .limit(req.query.limit)
+        .then(acc => res.status(200).json(acc))
+        .catch(err => res.send(err))
+})
+
+
+router.get('/', (req, res) => {
     // db('accounts')
     //     .then(acc => res.status(200).json(acc))
     //     .catch(err => res.send(err))
