@@ -23,7 +23,18 @@ router.get('/:id', (req, res) => {
 })
 
 
+router.post('/', (req, res) => {
+    const newData = req.body
 
+    db('accounts')
+        .insert(newData, {
+            id: req.body.id,
+            name: req.body.name,
+            budget: req.body.budget
+        })
+        .then(acc => res.status(200).json(acc))
+        .catch(err => res.send(err))
+})
 
 
 
