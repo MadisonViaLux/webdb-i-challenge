@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
 
 
 router.get('/:id', (req, res) => {
+    // db('accounts')
     db.select('*')
         .from('accounts')
         .where({ id: req.params.id })
@@ -35,6 +36,20 @@ router.post('/', (req, res) => {
         .then(acc => res.status(200).json(acc))
         .catch(err => res.send(err))
 })
+
+
+router.put('/:id', (req, res) => {
+    const newerData = req.body
+
+    db('accounts')
+        .where({ id: req.params.id })
+        .update(newerData)
+        .then(acc => res.status(200).json(acc))
+        .catch(err => res.send(err))
+})
+
+
+
 
 
 
